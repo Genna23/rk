@@ -1,0 +1,40 @@
+---
+
+import { Picture } from 'astro:assets';
+
+import About from '../images/about.jpg'
+
+---
+
+<section class="min-h-screen py-20">
+
+    <div class="w-5/6 mx-auto">
+    
+        <div class="flex justify-between">
+
+            <div>
+
+                <Picture src={About} class="w-auto h-auto" formats={['avif', 'webp']} alt="A description of my image." />
+    
+            </div>
+    
+            <div class="flex flex-col justify-between items-end">
+    
+                <div class="text-[5rem] uppercase text-right">
+
+                    <h3>Концепция</h3>
+                    <h3>Дизайн</h3>
+                    <h3>Производство</h3>
+
+                </div>
+                <div class="bg-[#9C7E5A] py-4 px-8">
+                    <a href="#" class="text-[2rem] text-white">Связаться</a>
+                </div>
+    
+            </div>
+
+        </div>
+        
+    </div>
+
+</section>

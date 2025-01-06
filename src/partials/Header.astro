@@ -1,0 +1,110 @@
+---
+
+import { Icon } from 'astro-icon/components'
+
+import SocialIcons from './SocialIcons.astro'
+
+---
+
+<header class="text-white py-5 h-1/3 z-0">
+
+    <div class="w-5/6 mx-auto">
+
+        <div class="flex justify-between">
+            <label for="navigation" class="w-1/3 lg:hidden">
+                <div class="hamburger">
+                    <span class="hamburger-top"></span>
+                    <span class="hamburger-middle"></span>
+                    <span class="hamburger-bottom"></span>
+                </div>
+            </label>
+            <input type="checkbox" class="hidden" id="navigation">
+            <nav class="lg:w-1/3 flex flex-col text-[2rem] uppercase fixed top-0 p-5 w-full h-full lg:bg-transparent lg:static bg-[#9C7E5A] lg:visible menu">
+                <label for="navigation" class="hamburger lg:hidden responsive p-10">
+                    <span class="close-top"></span>
+                    <span class="close-bottom"></span>
+                </label>
+                <a href="#" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Главная</a>
+                <a href="#" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Проекты</a>
+                <a href="#" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Информация</a>
+                <a href="#" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Контакты</a>
+                <SocialIcons theme="white"/>
+            </nav>
+        
+            <div class="w-1/3 text-center">
+        
+                <h2 class="text-[4rem] font-[Dance] leading-10 mt-5">Русский Клуб</h2>
+                <span class="text-[2rem] uppercase">Элитная мебель</span>  
+        
+            </div>
+        
+            <div class="w-1/3">
+                
+                <div class="flex justify-end gap-4">
+                    <SocialIcons />
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</header>
+
+<style>
+
+    .hamburger {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        transition: all 0.25s;
+        position: relative;
+    }
+
+    .hamburger-top,
+    .hamburger-middle,
+    .hamburger-bottom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background: white;
+    }
+
+    .hamburger-middle {
+        transform: translateY(7px);
+    }
+
+    .hamburger-bottom {
+        transform: translateY(14px);
+    }
+
+    .close-top,
+    .close-bottom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background: white;
+    }
+
+    .close-top {
+        transform: rotate(-45deg) translateY(6px) translate(-6px);
+    }
+
+    .close-bottom {
+        transform: rotate(45deg) translateY(6px) translate(6px);
+    }
+
+    .menu {
+        left: -100%;
+        transition: all 0.5s;
+    }
+
+    #navigation:checked ~ .menu {
+        left: 0;
+    }
+
+</style>
