@@ -2,13 +2,13 @@
 
 import { Icon } from 'astro-icon/components'
 
-const { links, theme } = Astro.props
+const { links } = Astro.props
 
 ---
 
 <div class="flex justify-end gap-4">
 
-<a href={links?.instagram}><Icon name="pinterest" class:list={`text-[3rem] ${theme ? 'text-white' : ''}`}/></a>
-<a href={links?.pinterest}><Icon name="instagram" class="text-[3rem]"/></a>
+<a href={links?.instagram}><Icon name="pinterest" class="text-[3rem] cursor-pointer"/></a>
+<a href={links?.pinterest}><Icon name="instagram" class="text-[3rem] cursor-pointer"/></a>
 
 </div>
