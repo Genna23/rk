@@ -24,12 +24,6 @@ import { Picture } from 'astro:assets';
         </div>
 
     </div>
-
-        <div class="absolute top-0 right-0 h-full z-0">
-
-            <Picture src={Door} alt="Дверь Русский клуб" class="max-h-full"/>
-    
-        </div>
     
 
 </section>
@@ -38,6 +32,14 @@ import { Picture } from 'astro:assets';
 
     h2 {
         writing-mode: vertical-lr;
+    }
+
+    section {
+    background-image: url('../images/door.png');
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: 100% 70%;
+    z-index: 20;
     }
 
 </style>
