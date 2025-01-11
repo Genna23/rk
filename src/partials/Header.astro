@@ -4,9 +4,11 @@ import { Icon } from 'astro-icon/components'
 
 import SocialIcons from './SocialIcons.astro'
 
+const {theme} = Astro.props
+
 ---
 
-<header class="text-white py-5 h-1/3 z-0">
+<header class={`text-${theme} py-5 h-1/3 z-0`}>
     <div class="w-5/6 mx-auto">
 
         <div class="flex justify-between">
@@ -14,7 +16,7 @@ import SocialIcons from './SocialIcons.astro'
                 <Icon name="open" class="text-[3rem] cursor-pointer"/>
             </label>
             <input type="checkbox" class="hidden" id="navigation">
-            <nav class="lg:w-1/3 flex flex-col text-[5rem] lg:text-[2rem] uppercase fixed top-0 p-5 w-full h-full lg:bg-transparent lg:static bg-[#9C7E5A] lg:visible menu">
+            <nav class="lg:w-1/3 flex flex-col text-[5rem] lg:text-[2rem] uppercase fixed top-0 py-5 w-full h-full lg:bg-transparent lg:static bg-[#9C7E5A] lg:visible menu">
                 <label for="navigation" class="hamburger lg:hidden responsive max-w-[30px]">
                     <Icon name="close" class="text-[5rem] cursor-pointer"/>
                 </label>
@@ -23,6 +25,8 @@ import SocialIcons from './SocialIcons.astro'
                 <a href="#" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Информация</a>
                 <a href="#" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Контакты</a>
             </nav>
+
+            
         
             <div class="w-full md:w-1/3 text-center">
         

@@ -1,0 +1,46 @@
+---
+layout: ../../layouts/CaseLayout.astro
+title: Старый Оскол
+description: Высокоглянцевые изделия из ХДФ панелей
+image: "../../images/portfolio_2.jpg"
+
+---
+
+import portfolio from '../../images/portfolio/staryj-oskol-vysokij-glyanec/portfolio.jpg'
+import portfolio_2 from '../../images/portfolio/staryj-oskol-vysokij-glyanec/portfolio_2.jpg'
+import portfolio_3 from '../../images/portfolio/staryj-oskol-vysokij-glyanec/portfolio_3.jpg'
+
+
+import { Picture } from 'astro:assets';
+
+<div class="grid lg:grid-cols-3 auto-rows-[300px] gap-6 py-20">
+
+    <div class="lg:col-span-2">
+
+        <Picture src={portfolio_3} formats={['avif', 'webp']} alt="A description of my image." class="object-cover h-full"/>
+
+    </div>
+
+    <div>
+
+        <Picture src={portfolio_2} formats={['avif', 'webp']} alt="A description of my image." class="object-cover h-full"/>
+
+    </div>
+
+    <div>
+
+        <Picture src={portfolio_3} formats={['avif', 'webp']} alt="A description of my image." class="object-cover h-full"/>
+
+    </div>
+
+    <div class="lg:col-span-2">
+
+        <Picture src={portfolio} formats={['avif', 'webp']} alt="A description of my image." class="object-cover h-full"/>
+
+    </div>
+
+
+
+</div>
+
+<h3>Старый оскол</h3>
