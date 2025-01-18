@@ -1,0 +1,28 @@
+---
+
+import SocialIcons from "../../partials/SocialIcons.astro";
+
+const {author, year, location} = Astro.props
+
+---
+
+
+    <div class="swiper-slide w-full">
+        <div>Автор проекта: {author}</div>
+        <div>Год исполнения: {year}</div>
+        <div>Место: {location}</div>
+
+        <a
+            href="/portfolio/staryj-oskol-vysokij-glyanec"
+            class="uppercase font-bold text-[#9C7E5A]">Подробнее</a
+        >
+    </div>
+
+    <!-- <div class="flex gap-4">
+        <SocialIcons
+            links={{
+                instagram: "https://www.instagram.com/doorsellite/",
+                pinterest: "https://www.instagram.com/doorsellite/",
+            }}
+        />
+    </div> -->

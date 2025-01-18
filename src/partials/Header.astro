@@ -15,15 +15,15 @@ const {theme} = Astro.props
             <label for="navigation" class="w-1/3 lg:hidden">
                 <Icon name="open" class="text-[3rem] cursor-pointer"/>
             </label>
-            <input type="checkbox" class="hidden" id="navigation">
-            <nav class="lg:w-1/3 flex flex-col text-[5rem] lg:text-[2rem] uppercase fixed top-0 py-5 w-full h-full lg:bg-transparent lg:static bg-[#9C7E5A] lg:visible menu">
+            <input type="checkbox" class="hidden checkbox-menu" id="navigation">
+            <nav class="lg:w-1/3 flex flex-col text-[5rem] lg:text-[2rem] uppercase fixed top-0 py-5 w-full h-full z-10 lg:bg-transparent lg:static bg-[#9C7E5A] lg:visible menu">
                 <label for="navigation" class="hamburger lg:hidden responsive max-w-[30px]">
                     <Icon name="close" class="text-[5rem] cursor-pointer"/>
                 </label>
-                <a href="/" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Главная</a>
-                <a href="#about" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Информация</a>
-                <a href="#portfolio" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Проекты</a>
-                <a href="#contacts" class="lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Контакты</a>
+                <a href="/" class="menu-link lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Главная</a>
+                <a href="#about" class="menu-link lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Информация</a>
+                <a href="#portfolio" class="menu-link lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Проекты</a>
+                <a href="#contacts" class="menu-link lg:hover:text-[#9C7E5A] hover:text-[#1D1D1D] transition ease-in-out delay-50">Контакты</a>
             </nav>
 
             
@@ -49,9 +49,17 @@ const {theme} = Astro.props
 
 </header>
 
+<script>
+
+    document.querySelectorAll('.menu-link').forEach(el => {
+        el.addEventListener('click', () => {
+            document.querySelector('.checkbox-menu').checked = false
+        })
+    })
+
+</script>
+
 <style>
-
-
 
     .menu {
         left: -100%;

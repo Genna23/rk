@@ -1,63 +1,50 @@
 ---
-import SocialIcons from "../partials/SocialIcons.astro";
 
 import Portfolio from "../images/portfolio.jpg";
 import Portfolio2 from "../images/portfolio_2.jpg";
 import Portfolio3 from "../images/portfolio_3.jpg";
 
-import SliderImage from "../images/slider-image.jpg";
-
-import { Picture } from "astro:assets";
+import SliderImage from '../images/slider-image.jpg'
 
 import { Icon } from "astro-icon/components";
 
 import Slide from "./PortfolioSlider/Slide.astro";
-
+import DescriptionSlide from "./PortfolioSlider/DescriptionSlide.astro";
 ---
 
 <section class="py-20 min-h-full" id="portfolio">
     <div class="w-5/6 px-2 mx-auto">
-        <h2 class="md:text-[10rem] text-[7rem] text-center font-[Dance]">Портфолио</h2>
+        <h2 class="md:text-[10rem] text-[7rem] text-center font-[Dance]">
+            Портфолио
+        </h2>
 
         <div class="grid grid grid-cols-1 gap-6 lg:grid-cols-4">
-            <div class="flex flex-col justify-between lg:col-span-2">
-                <div>
-                    <div>Автор проекта: Русский клуб</div>
-                    <div>Год исполнения: 2014</div>
-                    <div>Место: Старый Оскол</div>
-
-                    <a href="/portfolio/staryj-oskol-vysokij-glyanec" class="uppercase font-bold text-[#9C7E5A]"
-                        >Подробнее</a>
+                <div class="lg:col-span-2 ">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                          <DescriptionSlide author="1"/>
+                          <DescriptionSlide author="2"/>
+                          <DescriptionSlide author="3"/>
+                        </div>
+                      </div>
                 </div>
-
-                <div class="flex gap-4">
-                    <SocialIcons links={{
-                        instagram: 'https://www.instagram.com/doorsellite/',
-                        pinterest: 'https://www.instagram.com/doorsellite/'
-                    }}/>
-                </div>
-            </div>
 
             <div class="lg:col-span-2">
                 <div class="slider swiper">
-
                     <div class="swiper-wrapper">
-
                         <div class="swiper-slide">
-
                             <div class="swiper-slide childSlider swiper">
                                 <div class="swiper-wrapper">
                                     <Slide image={Portfolio} />
                                     <Slide image={Portfolio2} />
                                     <Slide image={Portfolio3} />
                                 </div>
-            
+
                                 <div class="swiper-pagination"></div>
                             </div>
-    
                         </div>
-    
-                        <!-- <div class="swiper-slide">
+
+                        <div class="swiper-slide">
     
                             <div class="swiper-slide childSlider swiper">
                                 <div class="swiper-wrapper">
@@ -68,16 +55,18 @@ import Slide from "./PortfolioSlider/Slide.astro";
                                 <div class="swiper-pagination"></div>
                             </div>
     
-                        </div> -->
-
+                        </div>
                     </div>
 
-                    <div class="w-full flex justify-end gap-4 items-center swiper-navigation">
-                        <button class="uppercase font-bold pointer">Следующий Проект</button>
-            
+                    <div
+                        class="w-full flex justify-end gap-4 items-center swiper-navigation"
+                    >
+                        <button class="uppercase font-bold pointer"
+                            >Следующий Проект</button
+                        >
+
                         <Icon name="arrow" />
                     </div>
-
                 </div>
             </div>
         </div>
@@ -85,14 +74,13 @@ import Slide from "./PortfolioSlider/Slide.astro";
 </section>
 
 <style>
-:root {
-    --swiper-pagination-color: #9C7E5A !important;
-    --swiper-pagination-bullet-inactive-color: #FFF !important;
-    --swiper-pagination-bullet-height: 15px;
-    --swiper-pagination-bullet-width: 15px;
-    --swiper-pagination-bullet-inactive-opacity: 1 !important;
-}
-
+    :root {
+        --swiper-pagination-color: #9c7e5a !important;
+        --swiper-pagination-bullet-inactive-color: #fff !important;
+        --swiper-pagination-bullet-height: 15px;
+        --swiper-pagination-bullet-width: 15px;
+        --swiper-pagination-bullet-inactive-opacity: 1 !important;
+    }
 </style>
 
 <script>
@@ -110,27 +98,33 @@ import Slide from "./PortfolioSlider/Slide.astro";
 
     document.addEventListener("DOMContentLoaded", () => {
 
-        const slider = new Swiper('.slider', {
-            modules: [Navigation],
+        const descriptionSlider = new Swiper(".mySwiper", {
+            effect: "fade",
+            allowTouchMove: false
+        });
+
+        const slider = new Swiper(".slider", {
+            modules: [Navigation, Thumbs],
             loop: true,
             allowTouchMove: false,
             navigation: {
-        nextEl: ".swiper-navigation",
+                nextEl: ".swiper-navigation",
+            },
+            thumbs: {
+        swiper: descriptionSlider,
       },
-        })
+        });
+
+
 
         const swiper = new Swiper(".childSlider", {
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
             },
-            // autoplay: {
-            //     delay: 2500,
-            //     disableOnInteraction: false,
-            // },
             loop: true,
             modules: [Pagination, Autoplay],
-            
         });
+
     });
 </script>
