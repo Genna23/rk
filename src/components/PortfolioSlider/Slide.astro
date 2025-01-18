@@ -1,16 +1,24 @@
 ---
 
 import { Picture } from "astro:assets";
+import  {getSizeFromUrl} from '../../utils/utils'
 
 const {image} = Astro.props
 
+const {filename, alt} = image
+
+const sizes = getSizeFromUrl(filename)
+
+const {width, height} = sizes
+
 ---
 
-<div class="swiper-slide">
-    <Picture
-        src={image}
-        formats={["avif", "webp"]}
-        alt="Портфолио Русский клуб - высокоглянцевые изделия"
+ <div class="swiper-slide">
+     <Picture
+         src={filename}
+         {alt}
+        {width}
+        {height}
         class="object-cover w-full h-[80rem]"
     />
 </div>

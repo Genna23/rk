@@ -1,130 +1,151 @@
 ---
 
-import Portfolio from "../images/portfolio.jpg";
-import Portfolio2 from "../images/portfolio_2.jpg";
-import Portfolio3 from "../images/portfolio_3.jpg";
-
-import SliderImage from '../images/slider-image.jpg'
-
 import { Icon } from "astro-icon/components";
 
 import Slide from "./PortfolioSlider/Slide.astro";
 import DescriptionSlide from "./PortfolioSlider/DescriptionSlide.astro";
+
+import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const { blok } = Astro.props;
+
+
+import { useStoryblokApi } from '@storyblok/astro'
+const storyblokApi = useStoryblokApi()
+
+const { data } = await storyblokApi.get('cdn/stories', {
+  version: 'draft',
+  starts_with: 'portfolio/',
+})
+
+const stories = data.stories
+
 ---
 
-<section class="py-20 min-h-full" id="portfolio">
+<section class="py-20 min-h-full" id="portfolio" {...storyblokEditable(blok)}>
     <div class="w-5/6 px-2 mx-auto">
         <h2 class="md:text-[10rem] text-[7rem] text-center font-[Dance]">
             Портфолио
         </h2>
 
         <div class="grid grid grid-cols-1 gap-6 lg:grid-cols-4">
-                <div class="lg:col-span-2 ">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                          <DescriptionSlide author="1"/>
-                          <DescriptionSlide author="2"/>
-                          <DescriptionSlide author="3"/>
-                        </div>
-                      </div>
-                </div>
-
             <div class="lg:col-span-2">
-                <div class="slider swiper">
+                <div class="swiper mySwiper h-full">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="swiper-slide childSlider swiper">
-                                <div class="swiper-wrapper">
-                                    <Slide image={Portfolio} />
-                                    <Slide image={Portfolio2} />
-                                    <Slide image={Portfolio3} />
-                                </div>
+                        {
+                            stories?.map(({content, full_slug}) => {
 
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        </div>
+                                const {title, date, place} = content
 
-                        <div class="swiper-slide">
-    
-                            <div class="swiper-slide childSlider swiper">
-                                <div class="swiper-wrapper">
-                                    <Slide image={SliderImage} />
-                                    <Slide image={Portfolio2} />
-                                </div>
-            
-                                <div class="swiper-pagination"></div>
-                            </div>
-    
-                        </div>
-                    </div>
-
-                    <div
-                        class="w-full flex justify-end gap-4 items-center swiper-navigation"
-                    >
-                        <button class="uppercase font-bold pointer"
-                            >Следующий Проект</button
-                        >
-
-                        <Icon name="arrow" />
+                                return (
+                                    <DescriptionSlide
+                                        {title}
+                                        {date}
+                                        {place}
+                                        url = {full_slug}
+                                    />
+                                );
+                            })
+                        }
                     </div>
                 </div>
             </div>
+
+            <div class="lg:col-span-2">
+                
+                <div class="slider swiper">
+                    <div class="swiper-wrapper">
+                        {
+                            stories?.map(({content}) => {
+                                return (
+                                    <div class="swiper-slide">
+                                        <div class="swiper-slide childSlider swiper">
+                                            <div class="swiper-wrapper">
+                                                {content?.images?.map(
+                                                    (image) => {
+                                                        return (
+                                                            <Slide {image} />
+                                                        );
+                                                    },
+                                                )}
+                                            </div>
+
+                                            <div class="swiper-pagination" />
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+                        </div>
+
+                        <div
+                            class="w-full flex justify-end gap-4 items-center swiper-navigation"
+                        >
+                            <button class="uppercase font-bold pointer"
+                                >Следующий Проект</button
+                            >
+
+                            <Icon name="arrow" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
     </div>
+
+    <style>
+        :root {
+            --swiper-pagination-color: #9c7e5a !important;
+            --swiper-pagination-bullet-inactive-color: #fff !important;
+            --swiper-pagination-bullet-height: 15px;
+            --swiper-pagination-bullet-width: 15px;
+            --swiper-pagination-bullet-inactive-opacity: 1 !important;
+        }
+    </style>
+
+    <script>
+        import Swiper from "swiper";
+        import {
+            Pagination,
+            FreeMode,
+            Thumbs,
+            Navigation,
+            Autoplay,
+        } from "swiper/modules";
+        import "swiper/css";
+        import "swiper/css/pagination";
+        import "swiper/css/free-mode";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const descriptionSlider = new Swiper(".mySwiper", {
+                effect: "fade",
+                allowTouchMove: false,
+            });
+
+            const slider = new Swiper(".slider", {
+                modules: [Navigation, Thumbs],
+                loop: true,
+                allowTouchMove: false,
+                navigation: {
+                    nextEl: ".swiper-navigation",
+                },
+                thumbs: {
+                    swiper: descriptionSlider,
+                },
+            });
+
+            const swiper = new Swiper(".childSlider", {
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                loop: true,
+                modules: [Pagination, Autoplay],
+            });
+        });
+    </script>
 </section>
-
-<style>
-    :root {
-        --swiper-pagination-color: #9c7e5a !important;
-        --swiper-pagination-bullet-inactive-color: #fff !important;
-        --swiper-pagination-bullet-height: 15px;
-        --swiper-pagination-bullet-width: 15px;
-        --swiper-pagination-bullet-inactive-opacity: 1 !important;
-    }
-</style>
-
-<script>
-    import Swiper from "swiper";
-    import {
-        Pagination,
-        FreeMode,
-        Thumbs,
-        Navigation,
-        Autoplay,
-    } from "swiper/modules";
-    import "swiper/css";
-    import "swiper/css/pagination";
-    import "swiper/css/free-mode";
-
-    document.addEventListener("DOMContentLoaded", () => {
-
-        const descriptionSlider = new Swiper(".mySwiper", {
-            effect: "fade",
-            allowTouchMove: false
-        });
-
-        const slider = new Swiper(".slider", {
-            modules: [Navigation, Thumbs],
-            loop: true,
-            allowTouchMove: false,
-            navigation: {
-                nextEl: ".swiper-navigation",
-            },
-            thumbs: {
-        swiper: descriptionSlider,
-      },
-        });
-
-
-
-        const swiper = new Swiper(".childSlider", {
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            loop: true,
-            modules: [Pagination, Autoplay],
-        });
-
-    });
-</script>

@@ -1,0 +1,54 @@
+---
+const { blok } = Astro.props;
+
+import { storyblokEditable, renderRichText } from '@storyblok/astro'
+
+const { title, description, images, content } = blok;
+
+import { getSizeFromUrl } from "../utils/utils";
+
+import { Picture } from "astro:assets";
+
+const renderedRichText = renderRichText(content)
+---
+
+<section class="py-20" {...storyblokEditable(blok)}>
+    <div class="w-5/6 mx-auto">
+        <h2
+            class="md:text-[10rem] text-[7rem] text-center font-[Dance] leading-[9rem]"
+        >
+            {title}
+        </h2>
+        <div class="text-center">
+            <span class="text-center">{description}</span>
+        </div>
+        <div>
+            <div
+                class="grid lg:grid-cols-3 auto-rows-[300px] gap-6 pt-20 portfolio-gallery"
+            >
+                {
+                    images?.map(({ filename, alt }, index) => {
+
+                        const sizes = getSizeFromUrl(filename)
+
+                        const {width, height} = sizes
+
+
+                        return (
+                        <div class={index % 4 === 0 ? 'lg:col-span-2' : ''}>
+                                <Picture
+                                class="object-cover h-full"
+                                src={filename}
+                                {width}
+                                {height}
+                                formats={["avif", "webp"]}
+                                {alt}
+                            />
+                        </div>)
+                    })
+                }
+            </div>
+        </div>
+        <div class="pt-10" set:html={renderedRichText}></div>
+    </div>
+</section>

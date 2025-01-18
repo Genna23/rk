@@ -13,18 +13,9 @@ const {frontmatter} = Astro.props;
 <html lang="ru">
 	<Head />
 	<body>
-        <Header theme="[#1D1D1D]"/>
+        
 		<main>
-                <section class="py-20">
-                    <div class="w-5/6 mx-auto">
-                        <h2 class="md:text-[10rem] text-[7rem] text-center font-[Dance] leading-[9rem]">{frontmatter.title}</h2>
-                        <div class="text-center"><span class="text-center">{frontmatter.description}</span></div>
-                        <div>
-                            <slot />
-                        </div>
-                    </div>
-                </section>
-                <Contacts/>
+                
 		</main>
 	</body>
 </html>

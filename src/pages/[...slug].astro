@@ -1,0 +1,46 @@
+---
+import { useStoryblokApi } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+
+import Header from "../partials/Header.astro";
+import Contacts from "../components/Contacts.astro";
+
+export async function getStaticPaths() {
+    const storyblokApi = useStoryblokApi();
+
+    const links = await storyblokApi.getAll("cdn/links", {
+        version: "draft",
+    });
+
+    return links
+        .filter((link) => !link.is_folder)
+        .map((link) => {
+            return {
+                params: {
+                    slug: link.slug === "home" ? undefined : link.slug,
+                },
+            };
+        });
+}
+
+const { slug } = Astro.params;
+
+const storyblokApi = useStoryblokApi();
+
+const { data } = await storyblokApi.get(
+    `cdn/stories/${slug === undefined ? "home" : slug}`,
+    {
+        version: "draft",
+    },
+);
+
+const story = data.story;
+---
+
+<DefaultLayout>
+    <Header theme="[#1D1D1D]"/>
+    <StoryblokComponent blok={story.content} />
+    <Contacts/>
+</DefaultLayout>
