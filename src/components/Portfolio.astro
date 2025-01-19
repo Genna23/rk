@@ -1,5 +1,4 @@
 ---
-
 import { Icon } from "astro-icon/components";
 
 import Slide from "./PortfolioSlider/Slide.astro";
@@ -10,17 +9,15 @@ import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
 const { blok } = Astro.props;
 
+import { useStoryblokApi } from "@storyblok/astro";
+const storyblokApi = useStoryblokApi();
 
-import { useStoryblokApi } from '@storyblok/astro'
-const storyblokApi = useStoryblokApi()
+const { data } = await storyblokApi.get("cdn/stories", {
+    version: "publish",
+    starts_with: "portfolio/",
+});
 
-const { data } = await storyblokApi.get('cdn/stories', {
-  version: 'draft',
-  starts_with: 'portfolio/',
-})
-
-const stories = data.stories
-
+const stories = data.stories;
 ---
 
 <section class="py-20 min-h-full" id="portfolio" {...storyblokEditable(blok)}>
@@ -34,16 +31,15 @@ const stories = data.stories
                 <div class="swiper mySwiper h-full">
                     <div class="swiper-wrapper">
                         {
-                            stories?.map(({content, full_slug}) => {
-
-                                const {title, date, place} = content
+                            stories?.map(({ content, full_slug }) => {
+                                const { title, date, place } = content;
 
                                 return (
                                     <DescriptionSlide
                                         {title}
                                         {date}
                                         {place}
-                                        url = {full_slug}
+                                        url={full_slug}
                                     />
                                 );
                             })
@@ -53,11 +49,10 @@ const stories = data.stories
             </div>
 
             <div class="lg:col-span-2">
-                
                 <div class="slider swiper">
                     <div class="swiper-wrapper">
                         {
-                            stories?.map(({content}) => {
+                            stories?.map(({ content }) => {
                                 return (
                                     <div class="swiper-slide">
                                         <div class="swiper-slide childSlider swiper">
@@ -77,75 +72,74 @@ const stories = data.stories
                                 );
                             })
                         }
-                        </div>
+                    </div>
 
-                        <div
-                            class="w-full flex justify-end gap-4 items-center swiper-navigation"
+                    <div
+                        class="w-full flex justify-end gap-4 items-center swiper-navigation"
+                    >
+                        <button class="uppercase font-bold pointer"
+                            >Следующий Проект</button
                         >
-                            <button class="uppercase font-bold pointer"
-                                >Следующий Проект</button
-                            >
 
-                            <Icon name="arrow" />
-                        </div>
+                        <Icon name="arrow" />
                     </div>
                 </div>
-
             </div>
-
-
         </div>
     </div>
-
-    <style>
-        :root {
-            --swiper-pagination-color: #9c7e5a !important;
-            --swiper-pagination-bullet-inactive-color: #fff !important;
-            --swiper-pagination-bullet-height: 15px;
-            --swiper-pagination-bullet-width: 15px;
-            --swiper-pagination-bullet-inactive-opacity: 1 !important;
-        }
-    </style>
-
-    <script>
-        import Swiper from "swiper";
-        import {
-            Pagination,
-            FreeMode,
-            Thumbs,
-            Navigation,
-            Autoplay,
-        } from "swiper/modules";
-        import "swiper/css";
-        import "swiper/css/pagination";
-        import "swiper/css/free-mode";
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const descriptionSlider = new Swiper(".mySwiper", {
-                effect: "fade",
-                allowTouchMove: false,
-            });
-
-            const slider = new Swiper(".slider", {
-                modules: [Navigation, Thumbs],
-                loop: true,
-                allowTouchMove: false,
-                navigation: {
-                    nextEl: ".swiper-navigation",
-                },
-                thumbs: {
-                    swiper: descriptionSlider,
-                },
-            });
-
-            const swiper = new Swiper(".childSlider", {
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                loop: true,
-                modules: [Pagination, Autoplay],
-            });
-        });
-    </script>
 </section>
+
+<style>
+    :root {
+        --swiper-pagination-color: #9c7e5a !important;
+        --swiper-pagination-bullet-inactive-color: #fff !important;
+        --swiper-pagination-bullet-height: 15px;
+        --swiper-pagination-bullet-width: 15px;
+        --swiper-pagination-bullet-inactive-opacity: 1 !important;
+    }
+</style>
+
+<script>
+    import Swiper from "swiper";
+    import {
+        Pagination,
+        FreeMode,
+        Thumbs,
+        Navigation,
+        Autoplay,
+        EffectFade,
+    } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/pagination";
+    import "swiper/css/free-mode";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const descriptionSlider = new Swiper(".mySwiper", {
+            allowTouchMove: false,
+        });
+
+        const slider = new Swiper(".slider", {
+            modules: [Navigation, Thumbs, Autoplay],
+            loop: true,
+            // autoplay: {
+            //     delay: 4000,
+            // },
+            allowTouchMove: false,
+            navigation: {
+                nextEl: ".swiper-navigation",
+            },
+            thumbs: {
+                swiper: descriptionSlider,
+            },
+        });
+
+        const swiper = new Swiper(".childSlider", {
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            loop: true,
+            modules: [Pagination, Autoplay],
+        });
+    });
+</script>
