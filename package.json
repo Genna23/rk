@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build cp yandex_70db4467689b4d15.html dist/yandex_70db4467689b4d15.html",
     "preview": "astro preview",
     "astro": "astro"
   },
