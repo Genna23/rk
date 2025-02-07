@@ -14,7 +14,8 @@ import About from '../images/about.png'
 
             <div class="md:w-3/5 lg:w-1/2">
 
-                <Picture src={About} class="w-auto h-auto" formats={['avif', 'webp']} alt="A description of my image." />
+                <Picture src={About} quality="low" class="w-auto h-auto" formats={['avif', 'webp']} alt="A description of my image." />
+                <Picture src={About} quality="high" class="w-auto h-auto" formats={['avif', 'webp']} alt="A description of my image." />
                 <div class="bg-[#9C7E5A] py-4 px-8 inline-block md:hidden my-6">
                     <a href="#" class="text-[2rem] text-white">Связаться</a>
                 </div>
