@@ -1,44 +1,49 @@
-<section class="bg-[#1D1D1D] py-20 min-h-screen h-screen contacts" id="contacts">
-    <div class="w-5/6 mx-auto flex flex-col justify-between h-full">
-            <div class="h-1/2">
-                <h2 class="md:text-[10rem] text-[7rem] text-white font-[Dance]">
-                    Заказать
-                </h2>
+<section
+  class="bg-[#1D1D1D] py-20 min-h-screen h-screen contacts"
+  id="contacts"
+>
+  <div class="w-5/6 mx-auto flex flex-col justify-between h-full">
+    <div class="h-1/2">
+      <h2 class="md:text-[10rem] text-[7rem] text-white font-[Dance]">
+        Заказать
+      </h2>
 
-                <div class="font-[2rem] text-white uppercase">
-                    <a href="mailto:ooo.russkiy.club@gmail.com">ooo.russkiy.club@gmail.com</a><br/>
-                    <a href="tel:+79038931073<">+7 903 893 10 73</a>
-                    <p>Беларусь, г. витебск</p>
-                </div>
-            </div>
-
-            <div class="h-1/2 flex items-end">
-
-                <p class="font-[2rem] text-white uppercase">все права защищены © <span class="font-[Dance]">Русский Клуб</span></p>
-
-            </div>
+      <div class="font-[2rem] text-white uppercase">
+        <a href="mailto:ooo.russkiy.club@gmail.com"
+          >ooo.russkiy.club@gmail.com</a
+        ><br />
+        <a href="tel:+79038931073<">+7 903 893 10 73</a>
+        <p>Беларусь, г. витебск</p>
+      </div>
     </div>
+
+    <div class="h-1/2 flex items-end">
+      <p class="font-[2rem] text-white uppercase">
+        все права защищены © <span class="font-[Dance]">Русский Клуб</span>
+      </p>
+    </div>
+  </div>
 </section>
 
 <style>
+  .contacts {
+    background-image: url("../images/chair.png");
+    background-repeat: no-repeat;
+    background-size: 1000px;
+    background-position: 130% 20%;
+  }
+
+  @media (max-width: 1024px) {
     .contacts {
-        background-image: url("../images/chair.png");
-        background-repeat: no-repeat;
-        background-size: 1000px;
-        background-position: 130% 20%;
+      background-size: 800px;
+      background-position: 250% 20%;
     }
-
-    @media (max-width: 1024px) {
-  .contacts {
-    background-size: 800px;
-    background-position: 250% 20%;
   }
-}
 
-    @media (max-width: 640px) {
-  .contacts {
-    background-size: 600px;
-    background-position: -20% 20%;
+  @media (max-width: 640px) {
+    .contacts {
+      background-size: 600px;
+      background-position: -20% 20%;
+    }
   }
-} 
 </style>

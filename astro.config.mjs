@@ -31,7 +31,7 @@ export default defineConfig({
   integrations: [storyblok({
     accessToken: env.STORYBLOK_TOKEN,
     components: {
-        portfolio: 'components/Portfolio',
+        portfolio: 'components/Home/Portfolio',
         project: 'components/Project',
       },
   }),

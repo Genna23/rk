@@ -1,0 +1,18 @@
+---
+import Header from "../../partials/Header.astro";
+
+import { Picture } from 'astro:assets';
+
+import ImformationImage from '../../images/information.png'
+
+
+---
+
+<section class="text-white bg-[#1D1D1D] py-5 h-screen min-h-screen relative">
+    <Header theme="white" />
+    <div class="relative">
+        <div class="absolute top-[-100px] left-1/2 translate-x-[-50%]">
+            <Picture src={ImformationImage} quality="low" class="w-auto h-auto" formats={['avif', 'webp']} alt="Русский клуб - дверь Гетта" />
+        </div>
+    </div>
+</section>

@@ -1,0 +1,44 @@
+---
+import Door from "../images/door.png";
+import { Picture } from "astro:assets";
+---
+
+<section class="min-h-screen bg-[#9C7E5A] py-20 relative">
+    <div class="w-5/6 mx-auto flex flex-col justify-between z-10">
+        <div class="z-10">
+            <h2 class="text-[9rem] leading-[7rem] uppercase">Почему мы?</h2>
+        </div>
+
+        <div class="uppercase leading-[5rem] uppercase mt-20 font-black z-10">
+            <p class="text-[6.4rem]">Эстетика</p>
+            <p class="text-[3.6rem]"><span>Ведущая команда дизайнеров</span></p>
+            <p class="text-[3.6rem] space-x-2">
+                <span>Премиальные материалы и технологии</span>
+            </p>
+            <p class="text-[2rem] space-x-8 leading-[2.5rem]">
+                <span>Разработка проекта</span>
+                <span>Более 20 лет опыта в производстве</span>
+            </p>
+            <p class="text-[2rem] space-x-8 leading-[2.5rem]">
+                <span>Качественный монтаж</span>
+                <span>Работа по всей россии</span>
+                <span>Собственное производство</span>
+                <span>Полный цикл работ</span>
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    h2 {
+        writing-mode: vertical-lr;
+    }
+
+    section {
+        background-image: url("../../images/door.png");
+        background-repeat: no-repeat;
+        background-size: 300px;
+        background-position: 100% 70%;
+        z-index: 20;
+    }
+</style>

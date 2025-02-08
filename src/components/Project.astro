@@ -1,7 +1,7 @@
 ---
 const { blok } = Astro.props;
 
-import { storyblokEditable, renderRichText } from '@storyblok/astro'
+import { storyblokEditable, renderRichText } from "@storyblok/astro";
 
 const { title, description, images, content } = blok;
 
@@ -9,7 +9,7 @@ import { getSizeFromUrl } from "../utils/utils";
 
 import { Picture } from "astro:assets";
 
-const renderedRichText = renderRichText(content)
+const renderedRichText = renderRichText(content);
 ---
 
 <section class="py-20" {...storyblokEditable(blok)}>
@@ -28,39 +28,43 @@ const renderedRichText = renderRichText(content)
             >
                 {
                     images?.map(({ filename, alt }, index) => {
+                        const sizes = getSizeFromUrl(filename);
 
-                        const sizes = getSizeFromUrl(filename)
+                        const { width, height } = sizes;
 
-                        const {width, height} = sizes
-
-                        return index > 3 ? '' : (
-                        <div class={index % 3 === 0 ? 'lg:col-span-2' : ''}>
+                        return index > 3 ? (
+                            ""
+                        ) : (
+                            <div class={index % 3 === 0 ? "lg:col-span-2" : ""}>
                                 <Picture
-                                class="object-cover h-full"
-                                src={filename}
-                                {width}
-                                {height}
-                                formats={["avif", "webp"]}
-                                {alt}
-                            />
-                        </div>)
+                                    class="object-cover h-full"
+                                    src={filename}
+                                    {width}
+                                    {height}
+                                    formats={["avif", "webp"]}
+                                    {alt}
+                                />
+                            </div>
+                        );
                     })
                 }
             </div>
         </div>
-        <div class="pt-10" set:html={renderedRichText}></div>
+        <div class="pt-10" set:html={renderedRichText} />
     </div>
 </section>
 
-<style>h2, h3 {
-    font-size: 5rem;
-  }
-  
-  h4 {
-    font-size: 3rem;
-  }
-  
-  p {
-    margin: 2rem 0;
-  }
-  </style>
+<style>
+    h2,
+    h3 {
+        font-size: 5rem;
+    }
+
+    h4 {
+        font-size: 3rem;
+    }
+
+    p {
+        margin: 2rem 0;
+    }
+</style>
