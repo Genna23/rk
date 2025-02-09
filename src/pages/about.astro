@@ -1,13 +1,17 @@
 ---
+import DefaultLayout from "../layouts/DefaultLayout.astro";
 
-import DefaultLayout from '../layouts/DefaultLayout.astro'
-
-import Information from '../components/About/Information.astro'
-import Header from '../partials/Header.astro'
-
+import Information from "../components/About/Information.astro";
+import Process from "../components/About/Process.astro";
+import Trust from "../components/About/Trust.astro";
+import ProductionSlider from "../components/About/Slider/ProductionSlider.astro";
+import Contacts from "../components/Contacts.astro";
 ---
 
 <DefaultLayout>
     <Information />
-
+    <Process />
+    <Trust />
+    <ProductionSlider />
+    <Contacts />
 </DefaultLayout>

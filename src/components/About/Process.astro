@@ -1,0 +1,96 @@
+<section class="text-white bg-[#1D1D1D] lg:h-screen py-10">
+    <div class="w-5/6 mx-auto grid grid lg:grid-cols-2 grid-cols-1 gap-6">
+        <div class="z-20">
+            <h2 class="md:text-[10rem] text-[7rem] font-[Dance]">Процесс</h2>
+
+            <p class="xl:w-1/2 lg:w-3/4">
+                Превращаем дерево в искусство. На протяжении более 20 лет мы
+                создаем премиальную мебель и двери, которые рассказывают свою
+                историю через каждую линию и текстуру.
+            </p>
+        </div>
+
+        <div class="lg:pl-[calc((350px/2)+3rem)] pl-0 z-20">
+            <div class="process-item relative">
+                <h3
+                    class="text-[3rem] md:text-[4rem] lg:text-[5rem] uppercase ml-20"
+                >
+                    Концепция
+                </h3>
+            </div>
+
+            <div class="process-item relative">
+                <h3
+                    class="text-[3rem] md:text-[4rem] lg:text-[5rem] uppercase ml-20"
+                >
+                    Дизайн
+                </h3>
+            </div>
+
+            <div class="process-item relative">
+                <h3
+                    class="text-[3rem] md:text-[4rem] lg:text-[5rem] uppercase ml-20"
+                >
+                    Документация
+                </h3>
+            </div>
+
+            <div class="process-item relative">
+                <h3
+                    class="text-[3rem] md:text-[4rem] lg:text-[5rem] uppercase ml-20"
+                >
+                    Производство
+                </h3>
+            </div>
+
+            <div class="process-item relative">
+                <h3
+                    class="text-[3rem] md:text-[4rem] lg:text-[5rem] uppercase ml-20"
+                >
+                    МОНТАЖ
+                </h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+    .process-item {
+        margin-top: 132px;
+        &:before {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            content: "";
+            width: 30px;
+            border-radius: 50%;
+            height: 30px;
+            background: white;
+        }
+
+        &:after {
+            position: absolute;
+            top: 30px;
+            left: 12px;
+            content: "";
+            width: 6px;
+            height: 200px;
+            background: white;
+        }
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            &:after {
+                width: 0;
+            }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .process-item::after {
+            height: 160px;
+        }
+    }
+</style>

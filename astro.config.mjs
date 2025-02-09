@@ -10,10 +10,13 @@ import icon from "astro-icon";
 
 import mdx from "@astrojs/mdx";
 
+import sitemap from '@astrojs/sitemap';
+
 const env = loadEnv("", process.cwd(), 'STORYBLOK')
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://vip-russian-club.ru',
   vite: {
     plugins: [basicSsl()],
     server: {
@@ -34,8 +37,5 @@ export default defineConfig({
         portfolio: 'components/Home/Portfolio',
         project: 'components/Project',
       },
-  }),
-  tailwind(), 
-  icon(), 
-  mdx()]
+  }), tailwind(), icon(), mdx(), sitemap()]
 });
