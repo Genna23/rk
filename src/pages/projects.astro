@@ -1,10 +1,9 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 
-import Information from "../components/About/Information.astro";
-import Process from "../components/About/Process.astro";
-import Trust from "../components/About/Trust.astro";
 import Contacts from "../components/Contacts.astro";
+
+import Content from "../components/Projects/Content.astro";
 
 import { useStoryblokApi } from '@storyblok/astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
@@ -20,15 +19,15 @@ const story = data.story
 ---
 
 <DefaultLayout>
-    <Information />
-    <Process />
-    <Trust />
-    {
+
+    <Content />
+
+    <!-- {
 
         story.content.body?.map((blok) => {
             return <StoryblokComponent blok={blok}/>
         })
         
-            }
+            } -->
     <Contacts />
 </DefaultLayout>

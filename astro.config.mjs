@@ -36,6 +36,7 @@ export default defineConfig({
     components: {
         portfolio: 'components/Home/Portfolio',
         project: 'components/Project',
+        productionSlider: 'components/About/Slider/ProductionSlider'
       },
   }), tailwind(), icon(), mdx(), sitemap()]
 });

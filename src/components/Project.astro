@@ -24,7 +24,7 @@ const renderedRichText = renderRichText(content);
         </div>
         <div>
             <div
-                class="grid lg:grid-cols-3 auto-rows-[300px] gap-6 pt-20 portfolio-gallery"
+                class="grid lg:grid-cols-3 gap-6 py-2 portfolio-gallery"
             >
                 {
                     images?.map(({ filename, alt }, index) => {
@@ -50,21 +50,45 @@ const renderedRichText = renderRichText(content);
                 }
             </div>
         </div>
-        <div class="pt-10" set:html={renderedRichText} />
+        <div class="pt-10 content" set:html={renderedRichText} />
     </div>
 </section>
 
-<style>
-    h2,
+<style is:global lang="scss">
+    /* h2,
     h3 {
         font-size: 5rem;
     }
 
     h4 {
         font-size: 3rem;
-    }
+    } */
 
-    p {
-        margin: 2rem 0;
-    }
+    .content {
+        p {
+            margin: 1rem 0;
+        }
+
+        h2, h3 {
+            font-size: 3rem;
+        }
+
+        h4 {
+        font-size: 2rem;
+        }
+
+        hr {
+            margin: 3rem 0;
+        }
+
+        ul {
+            list-style: inside;
+        }
+
+        li > p {
+            display: inline-block;
+        }
+
+    } 
+    
 </style>
