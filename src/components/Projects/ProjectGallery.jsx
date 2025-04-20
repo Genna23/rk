@@ -44,7 +44,7 @@ export default function ProjectGallery({ stories }) {
         ))}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {filtered.map((story, index) => {
           const imageUrl = story.content.images?.[0]?.filename || '';
           const title = story.content.title;
