@@ -12,6 +12,8 @@ import mdx from "@astrojs/mdx";
 
 import sitemap from '@astrojs/sitemap';
 
+import react from '@astrojs/react';
+
 const env = loadEnv("", process.cwd(), 'STORYBLOK')
 
 // https://astro.build/config
@@ -38,5 +40,5 @@ export default defineConfig({
         project: 'components/Project',
         productionSlider: 'components/About/Slider/ProductionSlider'
       },
-  }), tailwind(), icon(), mdx(), sitemap()]
+  }), tailwind(), icon(), mdx(), sitemap(), react()]
 });

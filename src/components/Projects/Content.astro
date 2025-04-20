@@ -1,80 +1,40 @@
 ---
+import Picture from "astro/components/Picture.astro";
+import Header from "../../partials/Header.astro";
 
-import Picture from "astro/components/Picture.astro"
-import Header from "../../partials/Header.astro"
+import image from "../../images/portfolio_2.jpg";
 
-import image from "../../images/portfolio_2.jpg"
+import { useStoryblokApi } from "@storyblok/astro";
+const storyblokApi = useStoryblokApi();
+
+const { data } = await storyblokApi.get("cdn/stories", {
+    version: "publish",
+    starts_with: "portfolio/",
+});
+
+const stories = data.stories;
+
+import  {getSizeFromUrl} from '../../utils/utils'
+import ProjectGallery from "./ProjectGallery";
 
 ---
 
 <section>
-
     <Header />
 
     <div class="w-5/6 mx-auto pt-10 pb-20">
+        <h2 class="md:text-[10rem] text-[7rem] text-center font-[Dance] mb-5">
+            Проекты
+        </h2>
 
-        <div class="grid grid-cols-4 gap-6">
-
-            <div class="space-y-2 cursor-pointer portfolio-item relative w-full overflow-hidden">
-                <div class="relative w-full h-full">
-                    <Picture src={image} alt="Портфолио" class="w-full h-full object-cover transition-transform duration-300 transform hover:scale-125"/>
-                </div>
-            </div>
-
-            <div class="space-y-2 cursor-pointer portfolio-item relative w-full overflow-hidden">
-                <div class="relative w-full h-full">
-                    <Picture src={image} alt="Портфолио" class="w-full h-full object-cover transition-transform duration-300 transform hover:scale-125"/>
-                </div>
-                <h3>Портфолио Заголовок 1</h3>
-            </div>
-
-            <div class="space-y-2 cursor-pointer portfolio-item relative w-full overflow-hidden">
-                <div class="relative w-full h-full">
-                    <Picture src={image} alt="Портфолио" class="w-full h-full object-cover transition-transform duration-300 transform hover:scale-125"/>
-                </div>
-                <h3>Портфолио Заголовок 1</h3>
-            </div>
-
-            <div class="space-y-2 cursor-pointer portfolio-item relative w-full overflow-hidden">
-                <div class="relative w-full h-full">
-                    <Picture src={image} alt="Портфолио" class="w-full h-full object-cover transition-transform duration-300 transform hover:scale-125"/>
-                </div>
-                <h3>Портфолио Заголовок 1</h3>
-            </div>
-
-            <div class="space-y-2 cursor-pointer portfolio-item relative w-full overflow-hidden col-span-2">
-                <div class="relative w-full h-full">
-                    <Picture src={image} alt="Портфолио" class="w-full h-full object-cover transition-transform duration-300 transform hover:scale-125"/>
-                </div>
-                <h3>Портфолио Заголовок 1</h3>
-            </div>
-
-            <div class="space-y-2 cursor-pointer portfolio-item relative w-full overflow-hidden col-span-2">
-                <div class="relative w-full h-full">
-                    <Picture src={image} alt="Портфолио" class="w-full h-full object-cover transition-transform duration-300 transform hover:scale-125"/>
-                </div>
-                <h3>Портфолио Заголовок 1</h3>
-            </div>
-
-            
-            
-
-            
-
-        </div>
+        <ProjectGallery client:load stories={stories}/>
 
     </div>
-
 </section>
 
 <style lang="scss">
-
     h3 {
         font-weight: bold;
         font-size: 2.5rem;
     }
-
-    
-
 </style>
-
